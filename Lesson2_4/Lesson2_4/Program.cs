@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace Lesson2_4
 {
@@ -7,20 +8,24 @@ namespace Lesson2_4
 	{
 		static void Main(string[] args)
 		{
-			Console.OutputEncoding = System.Text.Encoding.UTF8;
+			Console.OutputEncoding = Encoding.UTF8;
 
-			var check = new List<(DateTime Date, string Name, double Price)>();
-
-
-			check.Add((Date: DateTime.Now, Name: "молоко", Price: 30));
-			check.Add((DateTime.Now, "капуста", 3));
-			check.Add((DateTime.Now, "банан", 55.50));
-			check.Add((DateTime.Now, "яблоко", 43.50));
-			check.Add((DateTime.Now, "сыр", 220));
-
-			foreach (var keyValue in check)
+			var check = new List<(DateTime Date, string Name, double Price)>
 			{
-				Console.WriteLine(keyValue.Date + "     " + keyValue.Name + "     " + keyValue.Price);
+				(Date: DateTime.Now, Name: "молоко", Price: 30),
+				(DateTime.Now, "капуста", 3),
+				(DateTime.Now, "банан", 55.50),
+				(DateTime.Now, "яблоко", 43.50),
+				(DateTime.Now, "сыр", 220)
+			};
+
+			Console.ForegroundColor = ConsoleColor.Blue;
+			Console.WriteLine("Дата/Время             Название   Цена ");
+			Console.ForegroundColor = ConsoleColor.White;
+			for (int index = 0; index < check.Count; index++)
+			{
+				var keyValue = check[index];
+				Console.WriteLine($"{keyValue.Date.ToString("G").PadRight(20)}  {keyValue.Name.PadRight(10)} {keyValue.Price}");
 			}
 		}
 	}
